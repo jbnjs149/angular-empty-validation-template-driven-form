@@ -1,9 +1,9 @@
-<hello name="{{ name }}"></hello>
+<h5 class="mx-2 my-4">{{ name }}</h5>
 
 <div class="col-md-6 col-md-offset-4">
-  <div class="card">
+  <div class="card m-2">
     <div class="card-header">
-      <b>Log In</b>
+      <b>Example</b>
     </div>
 
     <div class="card-body">
@@ -14,9 +14,7 @@
       >
         <fieldset>
           <div class="form-group row">
-            <label class="col-md-2 col-form-label" for="notes"
-              >Notes</label
-            >
+            <label class="col-md-2 col-form-label" for="notes">Notes</label>
             <div class="col-md-8">
               <textarea
                 class="form-control"
@@ -30,7 +28,7 @@
                 #notes="ngModel"
                 [ngClass]="{
                   'is-invalid':
-                    (notes.touched || notes.dirty) &&
+                    (submitForm.submitted || notes.touched || notes.dirty) &&
                     !notes.valid
                 }"
               ></textarea>
@@ -44,6 +42,7 @@
               </span>
             </div>
           </div>
+          <br />
 
           <div class="row">
             <div class="col-md-4 offset-md-2">
@@ -51,7 +50,6 @@
                 class="btn btn-primary mr-3"
                 type="submit"
                 style="width:80px"
-                [disabled]="!submitForm.valid"
               >
                 submit
               </button>

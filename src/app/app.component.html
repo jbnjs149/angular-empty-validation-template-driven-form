@@ -1,4 +1,66 @@
 <hello name="{{ name }}"></hello>
-<p>
-  Start editing to see some magic happen :)
-</p>
+
+<div class="col-md-6 col-md-offset-4">
+  <div class="card">
+    <div class="card-header">
+      <b>Log In</b>
+    </div>
+
+    <div class="card-body">
+      <form
+        (ngSubmit)="submit(submitForm)"
+        #submitForm="ngForm"
+        autocomplete="off"
+      >
+        <fieldset>
+          <div class="form-group row">
+            <label class="col-md-2 col-form-label" for="notes"
+              >Notes</label
+            >
+            <div class="col-md-8">
+              <textarea
+                class="form-control"
+                id="notes"
+                type="text"
+                appEmptyvalidator
+                placeholder="Notes (required)"
+                required
+                [(ngModel)]="userNotes"
+                name="notes"
+                #notes="ngModel"
+                [ngClass]="{
+                  'is-invalid':
+                    (notes.touched || notes.dirty) &&
+                    !notes.valid
+                }"
+              ></textarea>
+              <span class="invalid-feedback">
+                <span *ngIf="notes.hasError('required')">
+                  Note is required.
+                </span>
+                <span *ngIf="notes.hasError('emptyValidator')">
+                  Note should not be empty
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4 offset-md-2">
+              <button
+                class="btn btn-primary mr-3"
+                type="submit"
+                style="width:80px"
+                [disabled]="!submitForm.valid"
+              >
+                submit
+              </button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+
+  <div class="alert alert-danger" *ngIf="errorMessage">{{ errorMessage }}</div>
+</div>

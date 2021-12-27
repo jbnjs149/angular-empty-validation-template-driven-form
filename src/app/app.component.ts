@@ -13,9 +13,9 @@ export class AppComponent {
 
   submit(submitForm: NgForm) {
     console.log('Form Valid: ', submitForm.valid);
-    console.log('notes');
+    console.log('notes:', this.userNotes);
     if (!submitForm.valid) {
-      this.errorMessage = 'please enter notes';
+      this.errorMessage = 'Please enter notes';
     } else {
       this.errorMessage = '';
     }
